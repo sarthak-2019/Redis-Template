@@ -1,0 +1,28 @@
+const Redis = require('ioredis');
+const redisClient = new Redis({
+  host: '',
+  port: 6379, // Default Redis port
+  password: 'your-redis-password', // If applicable
+});
+
+
+
+// Example: Caching a query result for 60 seconds
+const cacheKey = 'sarthak';
+const cacheDuration = 60; // seconds
+
+async function getCachedData() {
+  const cachedResult = await redisClient.get(cacheKey);
+  if (cachedResult) {
+    console.log(cachedResult);
+  } else {
+    console.log("sarthak");
+    // // Query database and store the result in Redis cache
+    // const dataFromDB = await fetchDataFromDB();
+    // await redisClient.setex(cacheKey, cacheDuration, JSON.stringify(dataFromDB));
+    // return dataFromDB;
+  }
+}
+getCachedData();
+
+// redisClient.set("sarthak", JSON.stringify("shukla"));
